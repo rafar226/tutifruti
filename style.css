@@ -1,0 +1,186 @@
+:root {
+    --primary: #4a90e2;
+    --secondary: #6c757d;
+    --success: #2ed573;
+    --danger: #ff4757;
+    --dark: #2f3542;
+    --light: #f1f2f6;
+}
+
+body { 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+    background: linear-gradient(135deg, #a8c0ff 0%, #3f2b96 100%);
+    display: flex; justify-content: center; align-items: center;
+    min-height: 100vh; margin: 0;
+}
+
+#app { 
+    background: white; padding: 30px; border-radius: 20px; 
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2); 
+    width: 90%; max-width: 450px; text-align: center; 
+}
+
+h1 { color: var(--dark); margin-bottom: 25px; font-size: 2rem; }
+
+/* Inputs Estilizados */
+input[type="text"] { 
+    width: 100%; padding: 12px; margin: 10px 0; 
+    border: 2px solid #ddd; border-radius: 10px; 
+    font-size: 1rem; transition: border-color 0.3s;
+    box-sizing: border-box;
+}
+input[type="text"]:focus { border-color: var(--primary); outline: none; }
+
+/* Botones con Efectos */
+button { 
+    cursor: pointer; border: none; border-radius: 10px; 
+    padding: 12px 20px; font-size: 1rem; font-weight: bold;
+    transition: all 0.2s; width: 100%; margin: 5px 0;
+}
+
+.btn-primary { background-color: var(--primary); color: white; }
+.btn-primary:hover { background-color: #357abd; transform: translateY(-2px); }
+
+.btn-secondary { background-color: var(--secondary); color: white; }
+.btn-secondary:hover { background-color: #5a6268; }
+
+#btn-basta { background-color: var(--danger); color: white; font-size: 1.2rem; margin-top: 20px; }
+#btn-basta:active { transform: scale(0.95); }
+
+/* Letra Seleccionada */
+#display-letra { 
+    font-size: 5rem; font-weight: 900; color: var(--primary);
+    margin: 20px 0; text-shadow: 2px 2px 0px #eee;
+    animation: bounce 0.5s ease;
+}
+
+@keyframes bounce {
+    0% { transform: scale(0.5); }
+    80% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+/* Resultados */
+#lista-puntajes p {
+    background: var(--light); padding: 10px; border-radius: 8px;
+    display: flex; justify-content: space-between; margin: 5px 0;
+}
+
+/* Divisores y tarjetas */
+.card { background: #fafafa; padding: 15px; border-radius: 15px; margin: 15px 0; }
+.divider { color: #aaa; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; }
+
+/* Timer */
+#timer { font-weight: bold; font-size: 1.2rem; color: var(--danger); }
+
+.hidden {
+    display: none !important;
+}
+
+/* Para que los inputs del juego se vean más ordenados */
+#inputs-container {
+    margin: 20px 0;
+    display: grid;
+    gap: 10px;
+}
+
+#inputs-container input {
+    margin: 0; /* Quita el margen que pusimos antes para que el grid mande */
+    border-left: 5px solid var(--primary); /* Un detalle de color al costado */
+}
+
+/* Estilo para el header del juego */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid var(--light);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+/* Ajuste para que los inputs no se amontonen en el cel */
+@media (max-width: 480px) {
+    #app { padding: 15px; width: 95%; }
+    h1 { font-size: 1.5rem; }
+    #display-letra { font-size: 3.5rem; }
+    #inputs-container { grid-template-columns: 1fr; } /* Una sola columna */
+}
+
+/* El contenedor de inputs ahora será más flexible */
+#inputs-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Dos columnas en desktop */
+    gap: 10px;
+}
+@media (max-width: 400px) {
+    #inputs-container { grid-template-columns: 1fr; }
+}
+
+#emoji-bar { display: flex; justify-content: center; gap: 5px; margin-top: 10px; }
+#emoji-bar button { width: auto; background: none; font-size: 1.5rem; }
+
+
+
+#emoji-display {
+    position: fixed;
+    bottom: 20%; /* Empieza desde abajo */
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 12px 25px;
+    border-radius: 50px;
+    z-index: 9999;
+    font-size: 1.5rem;
+    pointer-events: none;
+    opacity: 0;
+    display: none; /* Oculto por defecto */
+}
+
+/* Esta clase activa la animación */
+#emoji-display.animate {
+    display: block;
+    animation: floatUp 2.5s forwards;
+}
+
+@keyframes floatUp {
+    0% {
+        opacity: 0;
+        bottom: 20%;
+    }
+    10% {
+        opacity: 1;
+    }
+    80% {
+        opacity: 1;
+        bottom: 60%; /* Sube hasta aquí */
+    }
+    100% {
+        opacity: 0;
+        bottom: 70%; /* Termina de subir y desaparece */
+    }
+}
+
+.btn-small-anular {
+    background: #fff;
+    border: 1px solid var(--danger);
+    color: var(--danger);
+    padding: 4px 8px;
+    font-size: 0.8rem;
+    width: auto;
+    margin: 2px;
+    display: inline-block;
+}
+.btn-small-anular:hover {
+    background: var(--danger);
+    color: white;
+}
+#lista-respuestas-admin {
+    max-height: 300px;
+    overflow-y: auto; /* Por si son muchos jugadores */
+    background: #fff;
+    border-radius: 10px;
+    padding: 10px;
+}

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Tutti Frutti Online</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script type="module" src="app.js"></script>
+</head>
+<body>
+    <div id="app">
+        <section id="lobby">
+            <h1>Tutti Frutti</h1>
+            <input type="text" id="username" placeholder="Tu nombre o apodo">
+            
+            <div class="card">
+                <h3>Anfitrión</h3>
+                <button class="btn-primary" onclick="crearPartida()">Crear Nueva Sala</button>
+            </div>
+
+            <div class="divider"><span>O</span></div>
+
+            <div class="card">
+                <h3>Invitado</h3>
+                <input type="text" id="roomCode" placeholder="Código de la sala">
+                <button class="btn-secondary" onclick="unirsePartida()">Unirse a Sala</button>
+            </div>
+        </section>
+
+        <section id="waiting-screen" class="hidden">
+            <h2 id="waiting-status">Sala: ---</h2>
+            <p id="waiting-msg">Esperando jugadores...</p>
+            <div id="btn-iniciar-contenedor"></div> <div class="loader"></div>
+        </section>
+
+        <section id="game-screen" class="hidden">
+            <div class="header">
+                <h2 id="display-letra">Letra: ?</h2>
+                <div id="admin-zone">
+                    <div id="timer">00:00</div>
+                    <div id="admin-actions-game"></div>
+                </div>
+            </div>
+            
+            <div id="inputs-container">
+                <input type="text" placeholder="Nombre" id="input-nombre">
+                <input type="text" placeholder="País/Ciudad" id="input-lugar">
+                <input type="text" placeholder="Comida" id="input-comida">
+                <input type="text" placeholder="Cosa" id="input-cosa">
+                <input type="text" placeholder="Animal" id="input-animal">
+                <input type="text" placeholder="Película/Serie" id="input-pelicula">
+            </div>
+            <div id="admin-actions-game" style="margin-bottom: 10px;"></div>
+            <button id="btn-basta" onclick="presionarBasta()">¡BASTA PARA MÍ!</button>
+
+            <div id="emoji-bar">
+                <button onclick="enviarEmoji('😂')">😂</button>
+                <button onclick="enviarEmoji('😮')">😮</button>
+                <button onclick="enviarEmoji('😡')">😡</button>
+                <button onclick="enviarEmoji('👏')">👏</button>
+            </div>
+            <div id="emoji-display"></div>
+        </section>
+
+        <section id="results-screen" class="hidden">
+            <h2>Resultados Finales</h2>
+            <div id="lista-puntajes"></div>
+            <div id="admin-correccion-zone" class="card hidden">
+            <h3>Panel de Moderación (Admin)</h3>
+                <p><small>Toca una palabra para anularla (0 pts)</small></p>
+                <div id="lista-respuestas-admin"></div>
+            </div>
+
+            <button onclick="location.reload()">Jugar de nuevo</button>
+        </section>
+    </div>
+</body>
+</html>
